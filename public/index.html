@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10131b">
+  <title>Steam Score — Your achievements, ranked</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">S<span>+</span></span><span>STEAM<span class="brand-light">SCORE</span></span></a>
+    <div class="top-note"><span class="live-dot"></span> ACHIEVEMENT TRACKER</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span class="eyebrow-line"></span> YOUR LIBRARY. YOUR LEGACY.</div>
+      <h1>Every achievement<br>has a <em>value.</em></h1>
+      <p class="hero-copy">Turn your Steam library into a score worth chasing. Rarer achievements earn more points. Perfect a game and claim a 100-point bonus.</p>
+
+      <form id="lookup-form" class="lookup">
+        <div class="input-wrap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 12.5a4.5 4.5 0 1 0 9 0 4.5 4.5 0 0 0-9 0Z"/><path d="m12 8-2.5-2.5M16.5 12.5h3M12.5 17l2 2M6.5 14.5 4 17"/></svg><input id="steamid" autocomplete="url" placeholder="Steam ID, profile URL, or custom URL" required><button id="scan-button" type="submit">CALCULATE SCORE <span>↗</span></button></div>
+      </form>
+      <div class="privacy-note"><span>↳</span> Your profile's game details must be public for the scan to work.</div>
+      <div id="status" class="status" role="status" aria-live="polite"></div>
+    </section>
+
+    <section id="results" class="results hidden">
+      <div class="profile-row">
+        <div class="profile-ident"><img id="avatar" alt="" src=""><div><div class="profile-label">PLAYER PROFILE</div><h2 id="player-name">Player</h2><a id="profile-link" href="#" target="_blank" rel="noreferrer">View Steam profile ↗</a></div></div>
+        <div class="score-block"><span class="score-label">TOTAL GAMER SCORE</span><div><strong id="total-score">0</strong><span class="score-unit">PTS</span></div></div>
+      </div>
+      <div class="stats-grid">
+        <article class="stat-card"><span class="stat-label">GAMES SCANNED</span><strong id="games-scanned">—</strong><span class="stat-foot">with achievement data</span></article>
+        <article class="stat-card"><span class="stat-label">ACHIEVEMENTS</span><strong><span id="unlocked">—</span><small> / <span id="total-achievements">—</span></small></strong><span class="stat-foot">unlocked across your library</span></article>
+        <article class="stat-card"><span class="stat-label">LIBRARY COMPLETION</span><strong id="completion">—%</strong><div class="progress-track"><span id="completion-bar"></span></div></article>
+        <article class="stat-card stat-highlight"><span class="stat-label">PERFECT GAMES</span><strong id="perfect-games">—</strong><span class="stat-foot">+100 bonus per game</span></article>
+      </div>
+      <div class="section-head"><div><div class="profile-label">THE BREAKDOWN</div><h2>Your games</h2></div><div class="filters"><input id="game-search" placeholder="Search games…" aria-label="Search games"><select id="sort-games" aria-label="Sort games"><option value="score">Highest score</option><option value="completion">Completion</option><option value="name">Name A–Z</option><option value="playtime">Most played</option></select></div></div>
+      <div id="games-list" class="games-list"></div>
+      <p id="rarity-note" class="footnote"></p>
+    </section>
+
+    <section class="scoring-section">
+      <div class="section-head rules-head"><div><div class="profile-label">THE RULES</div><h2>Rarity pays off.</h2></div><p>Achievement value is based on the percentage of Steam players who unlocked it.</p></div>
+      <div class="rarity-grid">
+        <div class="rarity-item"><span class="rarity-range">50%+</span><strong>5 <small>PTS</small></strong><div class="rarity-meter"><i style="width:100%"></i></div></div>
+        <div class="rarity-item"><span class="rarity-range">40–49%</span><strong>10 <small>PTS</small></strong><div class="rarity-meter"><i style="width:85%"></i></div></div>
+        <div class="rarity-item"><span class="rarity-range">30–39%</span><strong>15 <small>PTS</small></strong><div class="rarity-meter"><i style="width:70%"></i></div></div>
+        <div class="rarity-item"><span class="rarity-range">15–29%</span><strong>20 <small>PTS</small></strong><div class="rarity-meter"><i style="width:58%"></i></div></div>
+        <div class="rarity-item"><span class="rarity-range">10–14%</span><strong>25 <small>PTS</small></strong><div class="rarity-meter"><i style="width:46%"></i></div></div>
+        <div class="rarity-item"><span class="rarity-range">5–9%</span><strong>30 <small>PTS</small></strong><div class="rarity-meter"><i style="width:34%"></i></div></div>
+        <div class="rarity-item"><span class="rarity-range">1–4%</span><strong>35 <small>PTS</small></strong><div class="rarity-meter"><i style="width:22%"></i></div></div>
+        <div class="rarity-item rarity-legendary"><span class="rarity-range">Under 1%</span><strong>50 <small>PTS</small></strong><div class="rarity-meter"><i style="width:10%"></i></div></div>
+      </div>
+      <div class="perfect-callout"><div class="perfect-icon">✦</div><div><strong>100-point perfect-game bonus</strong><p>Unlock every achievement in a game to earn an extra 100 points on top of your achievement score.</p></div><span class="bonus">+100</span></div>
+    </section>
+    <footer><a class="brand footer-brand" href="#"><span class="brand-mark">S<span>+</span></span><span>STEAM<span class="brand-light">SCORE</span></span></a><span>Unofficial community project · Not affiliated with Valve</span></footer>
+  </main>
+  <template id="game-template"><article class="game-card"><div class="game-icon"></div><div class="game-main"><div class="game-title-row"><h3></h3><span class="perfect-badge hidden">✦ PERFECT</span></div><div class="game-meta"></div><div class="game-progress"><span></span></div><div class="achievement-details hidden"></div></div><div class="game-score"><strong></strong><span>POINTS</span><button class="details-toggle" type="button">DETAILS +</button></div></article></template>
+  <script src="/app.js"></script>
+</body>
+</html>
